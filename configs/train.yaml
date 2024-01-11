@@ -1,0 +1,24 @@
+# Used to config the <pointfusion.datasets.bbox_dataset.BBoxPredicationDataset> class
+dataset: 
+  processed_data_path: /home/robotics-noob/Workspaces/3D_BBox_Predication_ws/data/dl_challenge_processed_224
+  batch_size: 1
+  num_workers: 11
+  val_split_ratio: 0.1
+  test_split_ratio: 0.1
+  seed: 42
+
+
+# Used to config the <pointfusion.models.pointFusionLit.PointFusionLit> class
+model:
+  num_points: 50176
+  fusion_type: global
+  learning_rate: 0.001
+  draw_bbox: True
+
+# Used to config the <pytorch_lightning.trainer.Trainer> class
+trainer:
+  accelerator: gpu
+  devices: auto
+  logger: True
+  min_epochs: 1
+  max_epochs: 1
