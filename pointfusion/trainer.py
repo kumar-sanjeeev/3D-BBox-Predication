@@ -1,3 +1,4 @@
+import os
 import hydra
 import pytorch_lightning as pl
 import torch
@@ -65,8 +66,21 @@ def main(cfg):
         deterministic=True,
     )
 
-    trainer.fit(model, train_dataloader, val_dataloader)
+    # trainer.fit(model, train_dataloader, val_dataloader)
     trainer.test(model, test_dataloader)
+
+    # Save the model as onxx format
+    onnx_directory = cfg.trainer.onxx_dir_path
+    os.makedirs(
+        onnx_directory, exist_ok=True
+    )  # Create the directory if it doesn't exist
+
+    onnx_file_path = os.path.join(onnx_directory, cfg.trainer.onxx_file_name)
+    print(f"Saving the model as onxx format to {onnx_file_path}")
+    dummy_image_tensor = torch.randn(1, 3, 224, 224)
+    dummy_point_cloud_tensor = torch.randn(1, 3, 50176)
+    input_dict = {"img": dummy_image_tensor, "pc": dummy_point_cloud_tensor}
+    model.to_onnx(onnx_file_path, input_dict, export_params=True)
 
 
 if __name__ == "__main__":

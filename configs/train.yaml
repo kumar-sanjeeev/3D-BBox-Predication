@@ -21,4 +21,6 @@ trainer:
   devices: auto
   logger: True
   min_epochs: 1
-  max_epochs: 20
+  max_epochs: 1
+  onxx_dir_path: onxx_models
+  onxx_file_name: pointfusion.onnx

@@ -17,6 +17,8 @@ This repository contains a Python package named `pointfusion` to solve a DL chal
 │   └── vis.yaml                                    <- Data Visualization Config
 ├── data                                         <- Data
 │   └── dl_challenge                                <- Given dl challenge data
+├── onxx_model                                   <- Onxx Model
+│   └── <file_name>                                <- saved onxx format file
 ├── pointfusion                                  <- PointFusion Python Package
 │   ├── datasets                                 <- Dataset
 │   │   ├── __init__.py
