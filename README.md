@@ -53,13 +53,44 @@ The directory structure of this project looks like this:
 ## QuickStart
 ```bash
 # clone this repo
-git clone https://github.com/kumar-sanjeeev/3D-BBox-Predict.git
+git https://github.com/kumar-sanjeeev/3D-BBox-Predication.git
 cd 3D-BBox-Predication
 
 # create and activate python virtual env
-python -m venv .3db_env .
-source .3db_env/bin/activate  
+python -m venv .venv .
+source .venv/bin/activate  
 
 # install requirements
 pip install -r requirements.txt
+
+# locally install the poinfusion package
+pip install -e .
+```
+
+## Setting the environment variables
+To use the code from this repository, following environment variables need to be set. Put these into your `~/.bashrc file`. The reason for this one is avoid hard-coding data path into the codebase.
+
+```bash
+export SEREACT_DATA_PATH=</path/to/downloaded/dl_challenge_dataset> # for eg. SEREACT_DATA_PATH=/home/user/3D-BBox-Predication/dl_challenge_processed
+
+export SEREACT_PROCESSED_DATA_PATH=<path/to/store/processed_dl_challenge_dataset> # for eg. SEREACT_PROCESSED_DATA_PATH=/home/user/3D-BBox-Predication/dl_challenge_processed
+```
+
+## How to run the 3D Bounding Box Predication Pipeline
+
+**Step1 :** Download the dl challenge dataset into the local system from the provided link
+
+**Step2 :** Set the env variable `SEREACT_DATA_PATH` to path where dataset is downloaded
+
+**Step3 :** Set the env varible `SEREACT_PROCESSED_DATA_PATH` to a path where you want to store the processed dataset.
+
+**Step4 :** Run the following file to start preprocessing the data.
+```bash
+# assuming you're inside the `3D-BBox-Predication`
+python3 pointfusion/run_process_data.py 
+```
+**Step5 :** Start the training of model as follows:
+```bash
+# assuming you're inside the `3D-BBox-Predication`
+python3 pointfusion/trainer.py
 ```
