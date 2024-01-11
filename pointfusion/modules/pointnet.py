@@ -73,9 +73,7 @@ class PointNetEncoder(nn.Module):
         x = F.relu(self.conv4(x))
         x = self.conv5(x)  # (batch, 1024, num_points)
 
-        # print(f"BeFore Max Pooling: {x.shape}")
         # Max Pooling
         x = self.max_pool(x)  # (batch, 1024, 1)
-        # print(f"PointNetEncoder x.shape: {x.shape}")
         global_features = x.permute(0, 2, 1)  # (batch, 1, 1024)
         return local_features, global_features, mat_64x64

@@ -183,9 +183,6 @@ class PointFusionLit(pl.LightningModule):
             batch: Validation batch.
             batch_idx: Batch index.
         """
-        # images = batch['images']
-        # pcs = batch['pcs']
-        # target = batch['bboxes']
         images = batch["img_t"]
         pcs = batch["pc_t"]
         target = batch["bbox_t"]
@@ -193,8 +190,6 @@ class PointFusionLit(pl.LightningModule):
         if self.fusion_type == "global":
             # Forward pass
             pred_corners, _ = self(images, pcs)
-            print(pred_corners.shape)
-            print(target.shape)
             pred_corners = np_get_3d_bounding_box_including_center(
                 pred_corners[0].cpu().numpy()
             )

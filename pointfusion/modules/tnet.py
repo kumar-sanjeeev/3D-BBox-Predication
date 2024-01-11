@@ -47,11 +47,9 @@ class Tnet(nn.Module):
         x = F.relu(self.conv2(x))
         x = F.relu(self.conv3(x))
 
-        # x = self.max_pool(x).view(batch, -1)  # [batch, 1024, 1] -> [batch, 1024]
         x = torch.max(x, 2, keepdim=True)[0].view(
             batch, -1
         )  # [batch, 1024, 1] -> [batch, 1024, 1] -> [batch, 1, 1]
-        # print(f"x.shape: {x.shape}")
 
         x = F.relu(self.fc1(x))
         x = F.relu(self.fc2(x))
