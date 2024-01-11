@@ -1,4 +1,4 @@
-# Used to config the <pointfusion.datasets.bbox_dataset.BBoxPredicationDataset> class
+# Used to config the <pointfusion.datasets.SereactDataset.SereactDataset> class
 dataset: 
   processed_data_path: ${SEREACT_PROCESSED_DATA_PATH}
   batch_size: 1
@@ -8,9 +8,9 @@ dataset:
   seed: 42
 
 
-# Used to config the <pointfusion.models.pointFusionLit.PointFusionLit> class
+# Used to config the <pointfusion.models.pointfusion.PointFusionLit> class
 model:
-  num_points: 50176
+  num_points: 50176 # 224 * 224 if window size was 224
   fusion_type: global
   learning_rate: 0.001
   draw_bbox: True

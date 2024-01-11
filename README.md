@@ -1,11 +1,19 @@
-# 3D-BBox-Predication
-This repository contains the solution in form of python package named `pointfusion` to solve the DL challenge.
+# 3D-BBox-Prediction
+
+This repository contains a Python package named `pointfusion` to solve a DL challenge related to 3D bounding box prediction.
+
+## Table of Contents
+- [Project Structure Overview](#project-structure-overview)
+- [Quick Start](#quick-start)
+- [Setting Environment Variables](#setting-environment-variables)
+- [How to Run the 3D Bounding Box Prediction Pipeline](#how-to-run-the-3d-bounding-box-prediction-pipeline)
+- [About Configuration Files](#about-configuration-files)
 
 ## Project Structure Overview
-The directory structure of this project looks like this:
 
 ```.
 ├── configs                                      <- Hydra Configs
+│   ├── preprocess.yaml                             <- Preprocessing Config 
 │   ├── train.yaml                                  <- Training Config 
 │   └── vis.yaml                                    <- Data Visualization Config
 ├── data                                         <- Data
@@ -42,7 +50,7 @@ The directory structure of this project looks like this:
 │   ├── lightning_logs                           <- PyTorch Lightning logs
 |   |
 │   ├── __init__.py
-│   ├── input_data_vis.py                            <- Python file to visualization
+│   ├── input_data_vis.py                            <- Python file to visualize the input raw data
 │   ├── run_process_data.py                          <- Python file to create dataset after preprocessing
 │   ├── trainer.py                                   <- Python file to train/validate/test the model
 ├── README.md
@@ -50,47 +58,98 @@ The directory structure of this project looks like this:
 └── setup.py
 ```
 
-## QuickStart
+
+## Quick Start
+1. **Clone this repository:**
+    ```bash
+    git clone https://github.com/kumar-sanjeeev/3D-BBox-Predication.git
+    cd 3D-BBox-Predication
+    ```
+
+2. **Create and activate a Python virtual environment:**
+    ```bash
+    python3 -m venv .venv
+    source .venv/bin/activate
+    ```
+
+3. **Install requirements:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. **Install the `pointfusion` package locally:**
+    ```bash
+    pip install -e .
+    ```
+
+
+## Setting Environment Variables
+To use the code from this repository, set the following environment variables in your `~/.bashrc` file:
+
 ```bash
-# clone this repo
-git https://github.com/kumar-sanjeeev/3D-BBox-Predication.git
-cd 3D-BBox-Predication
-
-# create and activate python virtual env
-python -m venv .venv .
-source .venv/bin/activate  
-
-# install requirements
-pip install -r requirements.txt
-
-# locally install the poinfusion package
-pip install -e .
+export SEREACT_DATA_PATH=</path/to/downloaded/dataset>
+export SEREACT_PROCESSED_DATA_PATH=</path/to/store/processed_dataset>
 ```
 
-## Setting the environment variables
-To use the code from this repository, following environment variables need to be set. Put these into your `~/.bashrc file`. The reason for this one is avoid hard-coding data path into the codebase.
+## How to Run the 3D Bounding Box Prediction Pipeline
 
-```bash
-export SEREACT_DATA_PATH=</path/to/downloaded/dl_challenge_dataset> # for eg. SEREACT_DATA_PATH=/home/user/3D-BBox-Predication/dl_challenge_processed
+**Step1 :** Download the dl challenge dataset into the local system from the provided link.
 
-export SEREACT_PROCESSED_DATA_PATH=<path/to/store/processed_dl_challenge_dataset> # for eg. SEREACT_PROCESSED_DATA_PATH=/home/user/3D-BBox-Predication/dl_challenge_processed
-```
-
-## How to run the 3D Bounding Box Predication Pipeline
-
-**Step1 :** Download the dl challenge dataset into the local system from the provided link
-
-**Step2 :** Set the env variable `SEREACT_DATA_PATH` to path where dataset is downloaded
+**Step2 :** Set the env variable `SEREACT_DATA_PATH` to path where dataset is downloaded.
 
 **Step3 :** Set the env varible `SEREACT_PROCESSED_DATA_PATH` to a path where you want to store the processed dataset.
 
-**Step4 :** Run the following file to start preprocessing the data.
+**Step4 :** Run the data preprocessing.
 ```bash
 # assuming you're inside the `3D-BBox-Predication`
 python3 pointfusion/run_process_data.py 
 ```
-**Step5 :** Start the training of model as follows:
+**Step5 :** Start the training the model.
 ```bash
 # assuming you're inside the `3D-BBox-Predication`
 python3 pointfusion/trainer.py
 ```
+**Step6 :** Visualize training, validation, and test metrics on Tensorboard:
+
+```bash
+# assuming you're inside `3D-BBox-Predication`
+tensorboard --logdir=pointfusion/lightning_logs/
+```
+
+## About Configuration Files
+
+The project uses yaml based configuration files to manage various settings for preprocessing, training, and visualization. The default configuration files are located in the `configs` directory:
+
+- `preprocess.yaml`: Configuration for data preprocessing.
+- `train.yaml`: Configuration for training the model.
+- `vis.yaml`: Configuration for data visualization.
+
+### Default Configuration Files
+
+In the `run_process_data.py` script, the default configuration files used are:
+
+- Data Visualization Configuration: `configs/vis.yaml`
+
+In the `run_process_data.py` script, the default configuration files used are:
+
+- Data Preprocessing Configuration: `configs/preprocess.yaml`
+
+
+In the `trainer.py` script, the default configuration files used are:
+
+
+- Training Configuration: `configs/train.yaml`
+
+### Modifying Configuration Files
+
+To customize the behavior of the preprocessing, training, or visualization, you can edit the corresponding configuration files. Each file contains key-value pairs that define various parameters such as batch size, learning rate, model architecture, etc.
+
+For example, to change the batch size for training, open `configs/train.yaml` and locate the `batch_size` parameter. Modify the value according to your preference.
+
+### Running Trainer with Custom Configuration
+
+If you want to use a custom configuration file, you can specify it when running the `trainer.py` script. For example:
+
+```bash
+# for example
+python3 pointfusion/trainer.py --config_path=configs/custom_train_config.yaml

@@ -1,2 +1,2 @@
-raw_data_dir_path: /home/robotics-noob/Workspaces/3D_BBox_Predication_ws/data/dl_challenge_raw
+raw_data_dir_path: ${SEREACT_DATA_PATH}
 sample: 2
