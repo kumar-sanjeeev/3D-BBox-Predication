@@ -5,7 +5,6 @@ This repository contains a Python package named `pointfusion` to solve a DL chal
 ## Table of Contents
 - [Project Structure Overview](#project-structure-overview)
 - [Quick Start](#quick-start)
-- [Setting Environment Variables](#setting-environment-variables)
 - [How to Run the 3D Bounding Box Prediction Pipeline](#how-to-run-the-3d-bounding-box-prediction-pipeline)
 - [About Configuration Files](#about-configuration-files)
 
@@ -83,28 +82,20 @@ This repository contains a Python package named `pointfusion` to solve a DL chal
     ```
 
 
-## Setting Environment Variables
-To use the code from this repository, set the following environment variables in your `~/.bashrc` file:
-
-```bash
-export SEREACT_DATA_PATH=</path/to/downloaded/dataset>
-export SEREACT_PROCESSED_DATA_PATH=</path/to/store/processed_dataset>
-```
-
 ## How to Run the 3D Bounding Box Prediction Pipeline
 
 **Step1 :** Download the dl challenge dataset into the local system from the provided link.
 
-**Step2 :** Set the env variable `SEREACT_DATA_PATH` to path where dataset is downloaded.
+**Step2 :** Set the `root_path` parameter in `config/preprocess.yaml` and `config/vis.yaml` file to absolute path where dl challenge dataset is downloaded.
 
-**Step3 :** Set the env varible `SEREACT_PROCESSED_DATA_PATH` to a path where you want to store the processed dataset.
+**Step3 :** Set the `processed_data_path` parameter in `config/preprocess.yaml` and `config/train.yaml` file to absolute path where you want to store the preprocessed data.
 
 **Step4 :** Run the data preprocessing.
 ```bash
 # assuming you're inside the `3D-BBox-Predication`
 python3 pointfusion/run_process_data.py 
 ```
-**Step5 :** Start the training the model.
+**Step5 :** START TRAINING MODEL.
 ```bash
 # assuming you're inside the `3D-BBox-Predication`
 python3 pointfusion/trainer.py
@@ -126,19 +117,19 @@ The project uses yaml based configuration files to manage various settings for p
 
 ### Default Configuration Files
 
+In the `input_data_vis.py` script, the default configuration files used are:
+
+- `configs/vis.yaml`
+
 In the `run_process_data.py` script, the default configuration files used are:
 
-- Data Visualization Configuration: `configs/vis.yaml`
-
-In the `run_process_data.py` script, the default configuration files used are:
-
-- Data Preprocessing Configuration: `configs/preprocess.yaml`
+- `configs/preprocess.yaml`
 
 
 In the `trainer.py` script, the default configuration files used are:
 
 
-- Training Configuration: `configs/train.yaml`
+- `configs/train.yaml`
 
 ### Modifying Configuration Files
 
