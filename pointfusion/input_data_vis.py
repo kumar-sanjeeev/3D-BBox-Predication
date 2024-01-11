@@ -13,7 +13,7 @@ from pointfusion.utils.draw_utils import draw_bounding_boxes
 @hydra.main(version_base=None, config_path="../configs", config_name="vis")
 def main(cfg):
     # Load the given data
-    filepaths = FilePaths(root_path=cfg.raw_data_dir_path)
+    filepaths = FilePaths(root_path=cfg.root_path)
 
     # Load the files
     rgb_file_paths = filepaths.get_rgb_file_paths()

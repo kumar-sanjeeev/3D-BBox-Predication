@@ -48,10 +48,6 @@ def main(cfg):
     pcs = batch["pc_t"]
     target = batch["bbox_t"]
 
-    print(f"Images: {images.size()}")
-    print(f"Point Cloud: {pcs.size()}")
-    print(f"Target: {target.size()}")
-
     # Create the model
     model = PointFusionLit(
         num_points=cfg.model.num_points,
