@@ -1,2 +1,2 @@
-raw_data_dir_path: ${SEREACT_DATA_PATH}
+root_path:  # must be specified
 sample: 2

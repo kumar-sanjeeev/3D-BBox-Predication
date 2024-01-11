@@ -1,6 +1,6 @@
 # Used to config the <pointfusion.datasets.SereactDataset.SereactDataset> class
 dataset: 
-  processed_data_path: ${SEREACT_PROCESSED_DATA_PATH}
+  processed_data_path:  # must be specified
   batch_size: 1
   num_workers: 11
   val_split_ratio: 0.1

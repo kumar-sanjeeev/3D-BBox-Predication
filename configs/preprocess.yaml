@@ -1,4 +1,4 @@
 dataset:
-  root_path: ${SEREACT_DATA_PATH}
+  root_path: # must be specified
   window_size: 224
-  output_path: ${SEREACT_PROCESSED_DATA_PATH}
+  processed_data_path: # must be specified
