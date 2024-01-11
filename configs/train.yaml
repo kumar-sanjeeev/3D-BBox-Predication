@@ -1,6 +1,6 @@
 # Used to config the <pointfusion.datasets.bbox_dataset.BBoxPredicationDataset> class
 dataset: 
-  processed_data_path: /home/robotics-noob/Workspaces/3D_BBox_Predication_ws/data/dl_challenge_processed_224
+  processed_data_path: ${SEREACT_PROCESSED_DATA_PATH}
   batch_size: 1
   num_workers: 11
   val_split_ratio: 0.1
