@@ -34,7 +34,6 @@ This repository contains a Python package named `pointfusion` to solve a DL chal
 │   │   ├── resnet.py                                <- Pretrained ResNet 
 │   │   └── tnet.py                                  <- Spatial Transformation Net
 │   └── utils
-│   │   │
 │   │   ├── conversion_utils.py                      <- Data Conversion utils
 │   │   ├── draw_utils.py                            <- Drawing utils
 │   │   ├── filepaths_utils.py                       <- FilePaths utils
@@ -54,6 +53,7 @@ This repository contains a Python package named `pointfusion` to solve a DL chal
 │   ├── trainer.py                                   <- Python file to train/validate/test the model
 ├── README.md
 ├── requirements.txt
+├── .gitignore
 └── setup.py
 ```
 
@@ -95,7 +95,7 @@ This repository contains a Python package named `pointfusion` to solve a DL chal
 # assuming you're inside the `3D-BBox-Predication`
 python3 pointfusion/run_process_data.py 
 ```
-**Step5 :** START TRAINING MODEL.
+**Step5 :** Start Training Model.
 ```bash
 # assuming you're inside the `3D-BBox-Predication`
 python3 pointfusion/trainer.py

@@ -21,4 +21,4 @@ trainer:
   devices: auto
   logger: True
   min_epochs: 1
-  max_epochs: 1
+  max_epochs: 20

@@ -25,7 +25,7 @@ class SereactDataset(Dataset):
             raise ValueError("Please provide the root path to the raw dataset")
 
         if not os.path.isabs(root_path):
-            raise ValueError("`root_path` and  must be absolute paths.")
+            raise ValueError("`root_path` must be absolute paths.")
 
         self.root_path = root_path
         self._data_paths = self._load_data_paths()
