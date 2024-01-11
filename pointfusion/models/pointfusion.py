@@ -190,13 +190,13 @@ class PointFusionLit(pl.LightningModule):
         if self.fusion_type == "global":
             # Forward pass
             pred_corners, _ = self(images, pcs)
-            pred_corners = np_get_3d_bounding_box_including_center(
+            pred_corners_for_iou = np_get_3d_bounding_box_including_center(
                 pred_corners[0].cpu().numpy()
             )
-            target = np_get_3d_bounding_box_including_center(target[0].cpu().numpy())
-            iou_3d = iou.IoU(pred_corners, target)
+            target_for_iou = np_get_3d_bounding_box_including_center(target[0].cpu().numpy())
+            iou_3d = iou.IoU(pred_corners_for_iou, target_for_iou)
             self.log(
-                "global_val_iou",
+                "globalfusion_val_iou",
                 iou_3d.iou(),
                 on_step=True,
                 on_epoch=True,
@@ -209,9 +209,13 @@ class PointFusionLit(pl.LightningModule):
             pred_corners = get_corners_from_pred_offsets(
                 pred_corners_offsets, pred_scores=scores
             )
-            iou_3d = iou.IoU(pred_corners, target)
+            pred_corners_for_iou = np_get_3d_bounding_box_including_center(
+                pred_corners[0].cpu().numpy()
+            )
+            target_for_iou = np_get_3d_bounding_box_including_center(target[0].cpu().numpy())
+            iou_3d = iou.IoU(pred_corners_for_iou, target_for_iou)
             self.log(
-                "dense_val_iou",
+                "densefusion_val_iou",
                 iou_3d.iou(),
                 on_step=True,
                 on_epoch=True,
@@ -242,7 +246,7 @@ class PointFusionLit(pl.LightningModule):
             )
             iou_3d = iou.IoU(pred_corners_for_iou, target_for_iou)
             self.log(
-                "global_test_iou",
+                "globalfusion_test_iou",
                 iou_3d.iou(),
                 on_step=True,
                 on_epoch=True,
@@ -274,7 +278,7 @@ class PointFusionLit(pl.LightningModule):
             )
             iou_3d = iou.IoU(pred_corners_for_iou, target_for_iou)
             self.log(
-                "dense_test_iou",
+                "densefusion_test_iou",
                 iou_3d.iou(),
                 on_step=True,
                 on_epoch=True,
