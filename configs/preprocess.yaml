@@ -1,4 +1,3 @@
-dataset:
-  root_path: # must be specified
-  window_size: 224
-  processed_data_path: # must be specified
+root_path: # must be specified
+window_size: 224
+processed_data_path: # must be specified
