@@ -36,6 +36,15 @@ class ProcessData:
             window_size (int): Size of the window around the object.
             output_dir_path (str): Path to the output directory.
         """
+        if not root or not output_dir_path:
+            raise ValueError(
+                "Please provide the root path to the raw dataset and output directory path."
+            )
+
+        if not os.path.isabs(root) or not os.path.isabs(output_dir_path):
+            raise ValueError(
+                "Both `root` and `output_dir_path` must be absolute paths."
+            )
         self.root_path = root
         self._file_paths = FilePaths(self.root_path)
         self.window_size = window_size
