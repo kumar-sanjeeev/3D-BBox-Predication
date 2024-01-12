@@ -1,2 +1,2 @@
-root_path:  # must be specified
+root_path:  # for example: /home/xyz/dl_challenge_raw # must be specified
 sample: 2
