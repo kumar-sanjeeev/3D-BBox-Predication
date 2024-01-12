@@ -19,3 +19,4 @@ scikit-image
 open3d
 black
 pythreejs
+onnx

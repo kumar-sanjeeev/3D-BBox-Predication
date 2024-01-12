@@ -1,7 +1,7 @@
 # Used to config the <pointfusion.datasets.SereactDataset.SereactDataset> class
 dataset: 
-  processed_data_path:  # must be specified
-  batch_size: 1
+  processed_data_path: # must be specified
+  batch_size: 2
   num_workers: 11
   val_split_ratio: 0.1
   test_split_ratio: 0.1
@@ -22,5 +22,5 @@ trainer:
   logger: True
   min_epochs: 1
   max_epochs: 1
-  onxx_dir_path: onxx_models
-  onxx_file_name: pointfusion.onnx
+  onnx_dir_path: onnx_models
+  onnx_file_name: pointfusion.onnx
