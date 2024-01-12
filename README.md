@@ -97,6 +97,10 @@ This repository contains a Python package named `pointfusion` to solve a DL chal
 # assuming you're inside the `3D-BBox-Predication`
 python3 pointfusion/run_process_data.py 
 ```
+Output:
+
+![image](https://github.com/kumar-sanjeeev/ros2-robotic-manipulation/assets/62834697/fe501624-d274-402e-8353-545d08c753bd)
+
 **Step5 :** Start Training Model.
 ```bash
 # assuming you're inside the `3D-BBox-Predication`
@@ -108,6 +112,9 @@ python3 pointfusion/trainer.py
 # assuming you're inside `3D-BBox-Predication`
 tensorboard --logdir=pointfusion/lightning_logs/
 ```
+Output:
+
+![image](https://github.com/kumar-sanjeeev/ros2-robotic-manipulation/assets/62834697/388beba0-12bb-4e06-ba6d-957e650d422c)
 
 ## About Configuration Files
 
